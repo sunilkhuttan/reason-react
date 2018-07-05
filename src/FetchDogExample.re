@@ -6,7 +6,8 @@ type dog = string;
 type state =
   | Loading
   | Error
-  | Loaded(array(dog));
+  | Loaded(array(dog))
+  | Show;
 
 type action =
   | DogsFetch

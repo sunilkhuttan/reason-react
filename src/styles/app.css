@@ -4,3 +4,12 @@
     margin-left: auto;
     margin-right: auto;
   }
+
+#city-div .city-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+#city-div .city-list .city-list-item {
+  margin-bottom: 10px;
+}

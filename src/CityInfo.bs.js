@@ -52,12 +52,17 @@ function make() {
                   return React.createElement("div", undefined, "Loading...");
                 }
               } else {
-                return React.createElement("div", undefined, React.createElement("h1", undefined, "Cities"), React.createElement("p", undefined, "Source: "), React.createElement("a", {
-                                href: "https://city.ceo"
-                              }, "https://city.ceo"), React.createElement("ul", undefined, Belt_Array.map(match[0], (function (city) {
+                return React.createElement("div", {
+                            id: "city-div"
+                          }, React.createElement("h1", undefined, "Cities"), React.createElement("a", {
+                                href: "#"
+                              }, "Home"), React.createElement("ul", {
+                                className: "city-list"
+                              }, Belt_Array.map(match[0], (function (city) {
                                       return React.createElement("li", {
-                                                  key: city[/* name */1]
-                                                }, city[/* name */1]);
+                                                  key: city[/* name */1],
+                                                  className: "city-list-item"
+                                                }, "Name : ", city[/* name */1], React.createElement("br", undefined), "Description : ", city[/* description */2], React.createElement("br", undefined));
                                     }))));
               }
             }),

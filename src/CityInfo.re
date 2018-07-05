@@ -1,4 +1,23 @@
 /* The new stdlib additions */
+/* This is the example of cities array returned from api. Create an end point to return this array and upsate the get URI
+    [
+        {
+            "id": 2,
+            "name": "London",
+            "description": "Biggest city in England."
+        },
+        {
+            "id": 1,
+            "name": "New York City",
+            "description": "The one with that big park."
+        },
+        {
+            "id": 3,
+            "name": "Paris",
+            "description": "The one with that big tower."
+        }
+    ]
+*/
 open Belt;
 
 type city = {
@@ -62,26 +81,30 @@ let make = _children => {
     | CitiesFetched(cities) => ReasonReact.Update(Loaded(cities))
     | CitiesFailedToFetch => ReasonReact.Update(Error)
     },
+
   didMount: self => self.send(CitiesFetch),
   render: self =>
     switch (self.state) {
     | Error => <div> (ReasonReact.string("An error occurred!")) </div>
     | Loading => <div> (ReasonReact.string("Loading...")) </div>
     | Loaded(cities) =>
-      <div>
+      <div id="city-div">
         <h1> (ReasonReact.string("Cities")) </h1>
-        <p> (ReasonReact.string("Source: ")) </p>
-        <a href="https://city.ceo">
-          (ReasonReact.string("https://city.ceo"))
+        <a href="#">
+          (ReasonReact.string("Home"))
         </a>
-        <ul>
+        <ul className="city-list">
           (
             Array.map(cities, city =>
-              <li key=city.name> (ReasonReact.string(city.name)) </li> 
+            <li className="city-list-item" key=city.name>
+                (ReasonReact.string("Name : ")) (ReasonReact.string(city.name)) <br></br>
+                (ReasonReact.string("Description : ")) (ReasonReact.string(city.description))<br></br>
+            </li> 
             )
             |> ReasonReact.array 
           )
         </ul>
+
       </div>
     },
 };

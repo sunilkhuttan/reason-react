@@ -7,6 +7,7 @@ var React = require("react");
 var Belt_Array = require("bs-platform/lib/js/belt_Array.js");
 var Json_decode = require("@glennsl/bs-json/src/Json_decode.bs.js");
 var ReasonReact = require("reason-react/src/ReasonReact.js");
+var Caml_builtin_exceptions = require("bs-platform/lib/js/caml_builtin_exceptions.js");
 
 function dogs(json) {
   var __x = Json_decode.field("message", (function (param) {
@@ -37,10 +38,21 @@ function make() {
           /* render */(function (self) {
               var match = self[/* state */1];
               if (typeof match === "number") {
-                if (match !== 0) {
-                  return React.createElement("div", undefined, "An error occurred!");
-                } else {
-                  return React.createElement("div", undefined, "Loading...");
+                switch (match) {
+                  case 0 : 
+                      return React.createElement("div", undefined, "Loading...");
+                  case 1 : 
+                      return React.createElement("div", undefined, "An error occurred!");
+                  case 2 : 
+                      throw [
+                            Caml_builtin_exceptions.match_failure,
+                            [
+                              "FetchDogExample.re",
+                              57,
+                              4
+                            ]
+                          ];
+                  
                 }
               } else {
                 return React.createElement("div", undefined, React.createElement("h1", undefined, "Dogs"), React.createElement("p", undefined, "Source: "), React.createElement("a", {

@@ -8,27 +8,18 @@ var Belt_Array = require("bs-platform/lib/js/belt_Array.js");
 var Json_decode = require("@glennsl/bs-json/src/Json_decode.bs.js");
 var ReasonReact = require("reason-react/src/ReasonReact.js");
 
-function decodedCity(json) {
-  return /* record */[
-          /* id */Json_decode.field("id", Json_decode.$$int, json),
-          /* name */Json_decode.field("name", Json_decode.string, json),
-          /* description */Json_decode.field("description", Json_decode.string, json)
-        ];
-}
-
-function cities(json) {
-  var __x = Json_decode.array(decodedCity, json);
-  return Belt_Array.map(__x, (function (city) {
-                return city;
+function dogs(json) {
+  var __x = Json_decode.field("message", (function (param) {
+          return Json_decode.array(Json_decode.string, param);
+        }), json);
+  return Belt_Array.map(__x, (function (dog) {
+                return dog;
               }));
 }
 
-var Decode = /* module */[
-  /* decodedCity */decodedCity,
-  /* cities */cities
-];
+var Decode = /* module */[/* dogs */dogs];
 
-var component = ReasonReact.reducerComponent("CityInfo");
+var component = ReasonReact.reducerComponent("FetchExample");
 
 function make() {
   return /* record */[
@@ -37,7 +28,7 @@ function make() {
           /* handedOffState */component[/* handedOffState */2],
           /* willReceiveProps */component[/* willReceiveProps */3],
           /* didMount */(function (self) {
-              return Curry._1(self[/* send */3], /* CitiesFetch */0);
+              return Curry._1(self[/* send */3], /* DogsFetch */0);
             }),
           /* didUpdate */component[/* didUpdate */5],
           /* willUnmount */component[/* willUnmount */6],
@@ -52,12 +43,12 @@ function make() {
                   return React.createElement("div", undefined, "Loading...");
                 }
               } else {
-                return React.createElement("div", undefined, React.createElement("h1", undefined, "Cities"), React.createElement("p", undefined, "Source: "), React.createElement("a", {
-                                href: "https://city.ceo"
-                              }, "https://city.ceo"), React.createElement("ul", undefined, Belt_Array.map(match[0], (function (city) {
+                return React.createElement("div", undefined, React.createElement("h1", undefined, "Dogs"), React.createElement("p", undefined, "Source: "), React.createElement("a", {
+                                href: "https://dog.ceo"
+                              }, "https://dog.ceo"), React.createElement("ul", undefined, Belt_Array.map(match[0], (function (dog) {
                                       return React.createElement("li", {
-                                                  key: city[/* name */1]
-                                                }, city[/* name */1]);
+                                                  key: dog
+                                                }, dog);
                                     }))));
               }
             }),
@@ -73,13 +64,13 @@ function make() {
                   return /* UpdateWithSideEffects */Block.__(2, [
                             /* Loading */0,
                             (function (self) {
-                                fetch("http://localhost:55680/api/cities").then((function (prim) {
+                                fetch("https://dog.ceo/api/breeds/list").then((function (prim) {
                                             return prim.json();
                                           })).then((function (json) {
-                                          var cities$1 = cities(json);
-                                          return Promise.resolve(Curry._1(self[/* send */3], /* CitiesFetched */[cities$1]));
+                                          var dogs$1 = dogs(json);
+                                          return Promise.resolve(Curry._1(self[/* send */3], /* DogsFetched */[dogs$1]));
                                         })).catch((function () {
-                                        return Promise.resolve(Curry._1(self[/* send */3], /* CitiesFailedToFetch */1));
+                                        return Promise.resolve(Curry._1(self[/* send */3], /* DogsFailedToFetch */1));
                                       }));
                                 return /* () */0;
                               })

@@ -26,7 +26,11 @@ function make(_, _$1) {
                                   onClick: (function () {
                                       return Curry._1(self[/* send */3], /* ToggleDetails */2);
                                     })
-                                }, "Show/Hide My Details"), match ? React.createElement("div", undefined, React.createElement("lable", undefined, "First Name : "), self[/* state */1][/* firstname */3], React.createElement("br", undefined), React.createElement("lable", undefined, "Last Name : "), self[/* state */1][/* lastname */4], React.createElement("br", undefined), React.createElement("lable", undefined, "Email : "), self[/* state */1][/* email */5], React.createElement("br", undefined), React.createElement("lable", undefined, "Mobile : "), self[/* state */1][/* mobile */6], React.createElement("br", undefined)) : null));
+                                }, "Show/Hide My Details"), match ? React.createElement("div", undefined, React.createElement("label", undefined, "First Name : "), self[/* state */1][/* firstname */3], React.createElement("br", undefined), React.createElement("label", undefined, "Last Name : "), self[/* state */1][/* lastname */4], React.createElement("br", undefined), React.createElement("label", undefined, "Email : "), self[/* state */1][/* email */5], React.createElement("br", undefined), React.createElement("label", undefined, "Mobile : "), self[/* state */1][/* mobile */6], React.createElement("br", undefined)) : null), React.createElement("div", undefined, React.createElement("button", {
+                                  onClick: (function () {
+                                      return Curry._1(self[/* send */3], /* UpdateDetails */3);
+                                    })
+                                }, "Update My Details")));
             }),
           /* initialState */(function () {
               return /* record */[
@@ -71,6 +75,16 @@ function make(_, _$1) {
                                 /* lastname */state[/* lastname */4],
                                 /* email */state[/* email */5],
                                 /* mobile */state[/* mobile */6]
+                              ]]);
+                case 3 : 
+                    return /* Update */Block.__(0, [/* record */[
+                                /* count */state[/* count */0],
+                                /* show */state[/* show */1],
+                                /* showDetails */state[/* showDetails */2],
+                                /* firstname */"Adam",
+                                /* lastname */"Jones",
+                                /* email */"a.jones@example.com",
+                                /* mobile */"088946445585"
                               ]]);
                 
               }

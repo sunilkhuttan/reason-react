@@ -13,7 +13,8 @@ type state = {
 type action =
   | Click
   | Toggle
-  | ToggleDetails;
+  | ToggleDetails
+  | UpdateDetails;
 
 /* Component template declaration.
    Needs to be **after** state and action declarations! */
@@ -34,6 +35,7 @@ let make = (~greeting, _children) => {
     | Click => ReasonReact.Update({...state, count: state.count + 1})
     | Toggle => ReasonReact.Update({...state, show: ! state.show})
     | ToggleDetails => ReasonReact.Update({...state, showDetails: !state.showDetails})
+    | UpdateDetails => ReasonReact.Update({...state, firstname: "Adam", lastname: "Jones", email: "a.jones@example.com", mobile: "088946445585"})
     },
 
   render: self => {
@@ -54,11 +56,16 @@ let make = (~greeting, _children) => {
         </button>          
           (self.state.showDetails ? 
           <div>
-            <lable>(ReasonReact.string("First Name : "))</lable> (ReasonReact.string(self.state.firstname)) <br/>
-            <lable>(ReasonReact.string("Last Name : "))</lable> (ReasonReact.string(self.state.lastname)) <br/>
-            <lable>(ReasonReact.string("Email : "))</lable> (ReasonReact.string(self.state.email)) <br/>
-            <lable>(ReasonReact.string("Mobile : "))</lable> (ReasonReact.string(self.state.mobile)) <br/>
+            <label>(ReasonReact.string("First Name : "))</label> (ReasonReact.string(self.state.firstname)) <br/>
+            <label>(ReasonReact.string("Last Name : "))</label> (ReasonReact.string(self.state.lastname)) <br/>
+            <label>(ReasonReact.string("Email : "))</label> (ReasonReact.string(self.state.email)) <br/>
+            <label>(ReasonReact.string("Mobile : "))</label> (ReasonReact.string(self.state.mobile)) <br/>
           </div> : ReasonReact.null)
+      </div>
+      <div>
+        <button onClick=(_event => self.send(UpdateDetails))>
+          (ReasonReact.string("Update My Details"))
+        </button> 
       </div>
     </div>;
   },
